@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-sketch</title>
+    <link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-    <div id = "picker-component">
-        <label for = "picker-field">Grid size: </label>
+    <div id = "main-frame">
 
-        <input
-        type = "number"
-        id = "picker-field"
-        min = "2"
-        max = "100"
-        value = "16" />
-    </div>
+        <div id = "picker-frame">
+            <label for = "picker-field">Grid size:&nbsp;</label>
 
-    <div id = "grid-frame">
+            <input
+            type = "number"
+            id = "picker-field"
+            min = "2"
+            max = "100"
+            value = "16" />
+        </div>
+
+        <div id = "grid-frame">
+            <div></div>
+            <div></div>
+        </div>
+
     </div>
 </body>
 </html>
