@@ -1,6 +1,6 @@
-* {
-    /* outline: 2px solid red; */
-}
+/* * {
+    outline: 2px solid red;
+} */
 
 body {
     display: flex;
@@ -26,6 +26,26 @@ body {
 #picker-field {
     width: 3em;
     font-size: 20px;
+    border-width: 1.5px;
+    border-radius: 5px;
+    border-style: solid;
+}
+
+#picker-frame button {
+    all: unset;
+    background-color: lightsalmon;
+    padding-block: 2.425px;
+    padding-inline: 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+
+    &:hover {
+        background-color: rgb(231, 126, 100);
+    }
+
+    &:active {
+    background-color: rgb(193, 95, 70);
+    }
 }
 
 #grid-frame {
@@ -35,6 +55,11 @@ body {
 }
 
 #grid-frame div {
+    all: unset;
     background-color: lightgrey;
     padding: 10px;
+
+    &:hover {
+        background-color: rgb(187, 182, 182);
+    }
 }
