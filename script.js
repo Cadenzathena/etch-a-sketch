@@ -22,8 +22,8 @@ function generateBtnClicked() {
 
 
 // Mostly handles generation. gridFrameWidth determines how the miniGrids are arranged.
-// I made a sanitizer function to handle pulling the length of the miniGrid. All to
-// dynamically set the width of the gridFrame (maybe in case I changed the value of the miniGrid length in the future...)
+// I made a sanitizer function to handle pulling the length of the miniGrid in order to
+// dynamically set the width of the gridFrame
 async function main() {
     await generateBtnClicked();
 
@@ -45,26 +45,22 @@ async function main() {
 
     gridFrame.style.width = `${gridSizeValue * miniGridLengthSanitizer()}px`
 
-    main();
-}
-
-
-
-async function hoverEngine() {
-    await main();
-
-    gridFrame.addEventListener("mouseover", eventDelegator);
-
-    function eventDelegator(e) {
-        if (e.target.matches("div")) {
-            e.target.style.cssText = "background-color: red;"
-        }
-    }
-
     hoverEngine();
 }
 
 
 
+// Logic for what happens when a mouse interacts with any miniGrid. Using event delegation
+// with the parent element (gridFrame) to prevent millions of added eventLiteners
+function hoverEngine() {
+    gridFrame.addEventListener("mouseover", (e) => e.target.style.cssText = "background-color: red;");
+
+    gridFrame.addEventListener("mouseout", (e) => setTimeout(() => {
+        e.target.style.cssText = "background-color: lightgrey;"}, 400));
+
+    main();
+}
+
+
+
 main();
-hoverEngine();
