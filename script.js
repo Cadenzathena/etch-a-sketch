@@ -15,7 +15,8 @@ function generateBtnClicked() {
         (e) => {
         e.preventDefault();
         resolve(gridSizeValue = +pickerField.value);
-        }
+        },
+        {once: true} // deletes the eventListener after it has fired.
     )})
 }
 
@@ -52,13 +53,27 @@ async function main() {
 
 // Logic for what happens when a mouse interacts with any miniGrid. Using event delegation
 // with the parent element (gridFrame) to prevent millions of added eventLiteners
-function hoverEngine() {
-    gridFrame.addEventListener("mouseover", (e) => e.target.style.cssText = "background-color: red;");
+async function hoverEngine() {
+    function mouseoverListenerFunc(e) {
+        e.target.style.cssText = "background-color: red;"
+    }
 
-    gridFrame.addEventListener("mouseout", (e) => setTimeout(() => {
-        e.target.style.cssText = "background-color: lightgrey;"}, 400));
+    function mouseoutListenerFunc(e) {
+        setTimeout(() => {
+            e.target.style.cssText = "background-color: lightgrey;"
+        }, 500)
+    }
+
+    gridFrame.addEventListener("mouseover", mouseoverListenerFunc);
+    gridFrame.addEventListener("mouseout", mouseoutListenerFunc);
 
     main();
+
+    // clears duplicate mouse events nicely, but calling generateBtnClicked again makes another
+    // "submit" eventListener. Not a big deal though.
+    await generateBtnClicked;
+    gridFrame.removeEventListener("mouseover", mouseoverListenerFunc);
+    gridFrame.removeEventListener("mouseout", mouseoutListenerFunc);
 }
 
 
