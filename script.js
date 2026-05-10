@@ -61,7 +61,7 @@ async function hoverEngine() {
     function mouseoutListenerFunc(e) {
         setTimeout(() => {
             e.target.style.cssText = "background-color: lightgrey;"
-        }, 500)
+        }, 400)
     }
 
     gridFrame.addEventListener("mouseover", mouseoverListenerFunc);
@@ -71,7 +71,7 @@ async function hoverEngine() {
 
     // clears duplicate mouse events nicely, but calling generateBtnClicked again makes another
     // "submit" eventListener. Not a big deal though.
-    await generateBtnClicked;
+    await generateBtnClicked();
     gridFrame.removeEventListener("mouseover", mouseoverListenerFunc);
     gridFrame.removeEventListener("mouseout", mouseoutListenerFunc);
 }
